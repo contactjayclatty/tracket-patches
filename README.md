@@ -1,72 +1,112 @@
-# Tracket Morphe patches
+# Tracket patches
 
-One Morphe patch for [Tracket](https://play.google.com/store/apps/details?id=com.tracket.app) `com.tracket.app` **0.9.38** (versionCode 237).
+[![release](https://img.shields.io/github/v/release/contactjayclatty/tracket-patches?style=flat-square&label=release)](https://github.com/contactjayclatty/tracket-patches/releases/latest)
+[![Tracket 0.9.38](https://img.shields.io/badge/Tracket-0.9.38-2ea44f?style=flat-square)](https://github.com/contactjayclatty/tracket-patches/releases/latest)
+[![license](https://img.shields.io/badge/license-GPL--3.0-blue?style=flat-square)](LICENSE)
+[![Morphe](https://img.shields.io/badge/Morphe-desktop%201.18.1-6e40c9?style=flat-square)](https://github.com/MorpheApp/morphe-cli)
 
-| Patch | Default | What it does |
-| --- | --- | --- |
-| Unlock lifetime | on | Seeds the on-device entitlement grant and skips the Play license check |
+Patches for Tracket (`com.tracket.app`) **0.9.38**, versionCode 237. One patch is included. It is on by default.
 
-The patch is GPL-3.0-or-later, the same license family as Morphe patches. See `LICENSE`. Author: Mara Quill.
+| Patch | What you get |
+| --- | --- |
+| **Unlock lifetime** | The app treats a lifetime purchase as active, and a re-signed APK gets past the Play license check. |
 
-## What the patch changes
+Author: Mara Quill. License: [GPL-3.0-or-later](LICENSE).
 
-The grant method is found by fingerprint, not by its obfuscated class name: a `void` method with one `java.util.List` parameter whose body contains both `purchaseTime` and `SHA-256`. A prelude is inserted at the start of that method. It seeds the client ratchet, publishes a grant, starts the existing refresh coroutine, and returns. The original method body stays in the dex and is not reached.
+<p align="center">
+  <a href="https://morphe.software/add-source?github=contactjayclatty/tracket-patches&name=Tracket%20patches"><strong>Add this source in Morphe Manager</strong></a>
+</p>
 
-`com.pairip.licensecheck.LicenseClient.checkLicense` gets `return-void` as its first instruction so a re-signed APK is not stopped by the Play licensing client. This build of Tracket has no `libpairip` native library.
+> [!IMPORTANT]
+> Use a stock Tracket **0.9.38** APK. Any other version is refused by the patch.
+> This changes the app on the phone. Tracket's servers can still refuse the account.
 
-## Limits
+> [!WARNING]
+> A patch source decides what is written into the app. Add this source only if you trust it.
 
-- This is a client-side grant. Tracket's servers can still refuse an account. The client proof does not encode monthly, yearly, or lifetime. Any active grant is treated as pro. Lifetime is the product name this patch is named for (`pro_lifetime`).
-- Pinned to Tracket 0.9.38. The grant method can survive a rename of its own class. These R8 names are hardcoded and will not survive a new obfuscation pass: `Lql3`, `Lxb6`, `Le2`, `Lmr`, `Lk01`, `Lsq`, `Ltz7`, `Luy7`, `Lhy7`, `Lqp1`.
-- Built against Morphe desktop CLI 1.18.1. Apply with `--bytecode-mode=FULL`. That is the mode this bundle was checked with.
-- `src/tracket/morphe/CheckPrelude.java` is a maintainer verifier. It is not inside the `.mpp`.
+## Use it in Morphe Manager
 
-## Import the file
+1. Install [Morphe Manager](https://github.com/MorpheApp/morphe-manager).
+2. Tap the button above. Manager asks before it adds the source.
+   Or do it by hand: **Sources** → **+** → **Remote**, then paste:
 
-`dist/patches-1.0.0.mpp` is the bundle. In Morphe Manager, import that file as a local patch source. A local `.mpp` does not auto-update.
+   ```text
+   github.com/contactjayclatty/tracket-patches
+   ```
 
-Desktop CLI, from a stock `0.9.38` APK:
+3. Open Tracket in Manager. Leave **Unlock lifetime** enabled.
+4. Patch the stock 0.9.38 APK and install the result.
+
+Manager reads [`patches-bundle.json`](patches-bundle.json) on `main` and downloads [`patches-1.0.0.mpp`](https://github.com/contactjayclatty/tracket-patches/releases/download/v1.0.0/patches-1.0.0.mpp) from the [v1.0.0 release](https://github.com/contactjayclatty/tracket-patches/releases/tag/v1.0.0). A repository source updates on its own when a newer release is published.
+
+## If you already have the file
+
+Import [`dist/patches-1.0.0.mpp`](dist/patches-1.0.0.mpp) from **Sources** → **+** → **Local**.
+
+A local file stays at the version you imported. Replace it yourself when a new release comes out.
+
+## Desktop
+
+From a stock `0.9.38` APK, with the [Morphe desktop CLI](https://github.com/MorpheApp/morphe-cli) 1.18.1:
 
 ```text
-morphe patch --bytecode-mode=FULL -p dist/patches-1.0.0.mpp -o tracket-0.9.38-morphe.apk tracket-0.9.38.apk
+morphe patch --bytecode-mode=FULL -p patches-1.0.0.mpp -o tracket-0.9.38-morphe.apk tracket-0.9.38.apk
 ```
 
-Options file, if you want one:
+`--bytecode-mode=FULL` is the mode this bundle was checked with.
+
+To turn the patch off, pass an options file with `--options-file`:
 
 ```json
 [
   {
+    "meta": {
+      "source": "patches-1.0.0.mpp"
+    },
     "patches": {
-      "Unlock lifetime": { "enabled": true }
+      "Unlock lifetime": {
+        "enabled": false
+      }
     }
   }
 ]
 ```
 
-Pass it with `--options-file`.
+## Before you patch
+
+| | |
+| --- | --- |
+| App | Tracket, package `com.tracket.app` |
+| Version | 0.9.38 only (versionCode 237) |
+| Patch | Unlock lifetime, enabled by default |
+| Needs | Morphe Manager, or Morphe desktop CLI 1.18.1 |
+
+The grant lives in the app. It does not encode monthly, yearly, or lifetime. Any active grant is treated as pro. Lifetime is the product this patch is named for (`pro_lifetime`).
+
+A newer Tracket build uses new obfuscated names. This release will fail on that build instead of guessing. The names pinned to 0.9.38 are `Lql3`, `Lxb6`, `Le2`, `Lmr`, `Lk01`, `Lsq`, `Ltz7`, `Luy7`, `Lhy7`, and `Lqp1`.
 
 ## Build
 
-You need JDK 17 or newer and `morphe-desktop-1.18.1-all.jar`.
+You need JDK 17 or newer and `morphe-desktop-1.18.1-all.jar` from the Morphe desktop CLI.
 
 ```text
 $env:MORPHE_JAR = 'C:\path\to\morphe-desktop-1.18.1-all.jar'
 pwsh -File build.ps1
 ```
 
-On this machine the jar is already at `C:\Android\tools\morphe\morphe-desktop-1.18.1-all.jar`, so `MORPHE_JAR` can be left unset. The script writes `dist/patches-1.0.0.mpp` and refreshes `tracket-lifetime-1.0.0.mpp` next to this README. The second name is only for the local patch catalog.
+The script writes `dist/patches-1.0.0.mpp`. `src/tracket/morphe/CheckPrelude.java` is a maintainer check. It is not packed into the `.mpp`.
 
-## Morphe Manager
+<details>
+<summary>How the patch finds the code</summary>
 
-Add this source:
+The purchase method is found by fingerprint: a `void` method with one `java.util.List` parameter whose body contains both `purchaseTime` and `SHA-256`. A short prelude is inserted at the start. It seeds the on-device grant, starts the app's own refresh coroutine, and returns. The original method body stays in the dex and is not reached.
 
-```text
-github.com/contactjayclatty/tracket-patches
-```
+`com.pairip.licensecheck.LicenseClient.checkLicense` returns immediately, so a re-signed APK is not stopped by the Play licensing client. Tracket 0.9.38 has no `libpairip` native library.
 
-Manager reads `patches-bundle.json` on the default branch and downloads `patches-1.0.0.mpp` from the `v1.0.0` release. A local import of `dist/patches-1.0.0.mpp` still works and does not auto-update.
+</details>
 
-## Next release
+<details>
+<summary>Cut the next release</summary>
 
 1. Bump `version` in `patches-bundle.json` and in `build.ps1`.
 2. Rebuild. Keep the asset name `patches-<version>.mpp`.
@@ -74,3 +114,5 @@ Manager reads `patches-bundle.json` on the default branch and downloads `patches
 4. Set `created_at` and `description` for that version.
 5. Commit `patches-bundle.json` on `main`.
 6. Create a GitHub release tagged `v<version>` and attach that `.mpp` under the same file name.
+
+</details>
