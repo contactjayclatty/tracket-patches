@@ -32,7 +32,7 @@
 
 ## Overview
 
-**Tracket Patches** publishes a Morphe patch bundle for the stock Tracket Android app, package \`com.tracket.app\`. The current release includes one patch, **Unlock lifetime**, which changes local entitlement handling and the client-side Play license check in the examined app version.
+**Tracket Patches** publishes a Morphe patch bundle for the stock Tracket Android app, package `com.tracket.app`. The current release includes one patch, **Unlock lifetime**, which changes local entitlement handling and the client-side Play license check in the examined app version.
 
 <table>
   <tr>
@@ -57,12 +57,12 @@ The bundle is version-locked because the relevant implementation uses obfuscated
 
 | Requirement | Version / value |
 | :-- | :-- |
-| Application | Tracket (\`com.tracket.app\`) |
-| Supported app build | **0.9.38**, \`versionCode 237\` |
-| Bundle | \`patches-1.0.0.mpp\` |
+| Application | Tracket (`com.tracket.app`) |
+| Supported app build | **0.9.38**, `versionCode 237` |
+| Bundle | `patches-1.0.0.mpp` |
 | Published release | [v1.0.0](https://github.com/contactjayclatty/tracket-patches/releases/tag/v1.0.0) |
 | Desktop tool documented for this bundle | Morphe desktop **1.18.1** |
-| Desktop bytecode mode used in project checks | \`FULL\` |
+| Desktop bytecode mode used in project checks | `FULL` |
 | Project license | [GPL-3.0-or-later](LICENSE) |
 
 > [!WARNING]
@@ -77,20 +77,20 @@ There are three ways to access the same versioned bundle. Choose the workflow ap
 **Recommended source-management workflow.** The remote source follows repository release metadata.
 
 1. Get [Morphe Manager](https://github.com/MorpheApp/morphe-manager).
-2. Use **Add to Morphe Manager** above, or open \`Sources\` → \`+\` → \`Remote\`.
+2. Use **Add to Morphe Manager** above, or open `Sources` → `+` → `Remote`.
 3. For manual entry, supply:
 
-   \`\`\`text
+   ```text
    github.com/contactjayclatty/tracket-patches
-   \`\`\`
+   ```
 
 4. Check that the target is stock **Tracket 0.9.38** and that the source displays the documented patch and version.
 
-Manager reads [\`patches-bundle.json\`](patches-bundle.json) from the default branch, and that manifest identifies the release asset. Adding a remote source requires trust in its maintainer.
+Manager reads [`patches-bundle.json`](patches-bundle.json) from the default branch, and that manifest identifies the release asset. Adding a remote source requires trust in its maintainer.
 
 ### 02 &nbsp; Local bundle · pinned version
 
-Already downloaded or built the \`.mpp\` file? In Manager, use \`Sources\` → \`+\` → \`Local\`, then choose [\`dist/patches-1.0.0.mpp\`](dist/patches-1.0.0.mpp).
+Already downloaded or built the `.mpp` file? In Manager, use `Sources` → `+` → `Local`, then choose [`dist/patches-1.0.0.mpp`](dist/patches-1.0.0.mpp).
 
 A local import is a **snapshot**, not a subscription to future releases. Import a new bundle manually when you intentionally upgrade.
 
@@ -99,15 +99,15 @@ A local import is a **snapshot**, not a subscription to future releases. Import 
 
 For the documented stock 0.9.38 APK and Morphe desktop CLI 1.18.1, the repository provides this command:
 
-\`\`\`powershell
+```powershell
 morphe patch --bytecode-mode=FULL -p patches-1.0.0.mpp -o tracket-0.9.38-morphe.apk tracket-0.9.38.apk
-\`\`\`
+```
 
-The \`FULL\` setting is the bytecode mode checked with this bundle.
+The `FULL` setting is the bytecode mode checked with this bundle.
 
-The patch is enabled by default. The following options file, when supplied with \`--options-file\`, disables it:
+The patch is enabled by default. The following options file, when supplied with `--options-file`, disables it:
 
-\`\`\`json
+```json
 [
   {
     "meta": { "source": "patches-1.0.0.mpp" },
@@ -116,9 +116,9 @@ The patch is enabled by default. The following options file, when supplied with 
     }
   }
 ]
-\`\`\`
+```
 
-**Build from source:** JDK 17+ and Morphe desktop 1.18.1 are required by [\`build.ps1\`](build.ps1). See the [maintainer guide](docs/MAINTAINING.md) for the documented build entry point and release checks.
+**Build from source:** JDK 17+ and Morphe desktop 1.18.1 are required by [`build.ps1`](build.ps1). See the [maintainer guide](docs/MAINTAINING.md) for the documented build entry point and release checks.
 
 </details>
 
@@ -130,13 +130,13 @@ The patch is enabled by default. The following options file, when supplied with 
 
 A deliberately short explanation for readers; the full bytecode-level detail lives in [Technical notes](docs/TECHNICAL.md).
 
-\`\`\`mermaid
+```mermaid
 flowchart LR
   A["Stock Tracket 0.9.38"] --> B["Morphe patch bundle"]
   B --> C["Modified local APK"]
   C --> D["On-device grant logic"]
   E["Tracket server / verified purchase"] -. "Independent check" .-> D
-\`\`\`
+```
 
 In the examined build, the app exposes premium-facing UI through a local grant that is refreshed periodically. The patch changes that client-side path and the installation-license behavior for a re-signed APK.
 
@@ -145,7 +145,7 @@ In the examined build, the app exposes premium-facing UI through a local grant t
 <details>
 <summary><strong>What the patcher looks for, and why updates can break it</strong></summary>
 
-The source fingerprints a purchase handler containing \`purchaseTime\` and \`SHA-256\`, then references version-specific obfuscated helpers. When an expected method is not found, the build is intended to fail rather than guess. The repository's technical reference records the relevant symbols, grant behavior, and limitations.
+The source fingerprints a purchase handler containing `purchaseTime` and `SHA-256`, then references version-specific obfuscated helpers. When an expected method is not found, the build is intended to fail rather than guess. The repository's technical reference records the relevant symbols, grant behavior, and limitations.
 
 [Read technical notes →](docs/TECHNICAL.md)
 
@@ -179,7 +179,7 @@ If you like Tracket, please consider purchasing a legitimate plan through [Googl
 | :-- | :-- |
 | **Monthly** | Recurring monthly subscription |
 | **Yearly** | Recurring annual subscription |
-| **Lifetime** | One-time in-app purchase (\`pro_lifetime\`) |
+| **Lifetime** | One-time in-app purchase (`pro_lifetime`) |
 
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=com.tracket.app">
