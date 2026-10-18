@@ -13,6 +13,20 @@ Patches for Tracket (`com.tracket.app`) **0.9.38**, versionCode 237. One patch i
 
 Author: Mara Quill. License: [GPL-3.0-or-later](LICENSE).
 
+## Support the developer
+
+If you like this app, please consider buying a subscription. Support the dev behind this magic :)
+
+Tracket sells three plans on the Play Store. Prices are shown in the app.
+
+| Plan | What it is |
+| --- | --- |
+| **Monthly** | Renews every month |
+| **Yearly** | Renews every year |
+| **Lifetime** | One-time purchase (`pro_lifetime`) |
+
+[Get Tracket on Google Play](https://play.google.com/store/apps/details?id=com.tracket.app)
+
 <p align="center">
   <a href="https://morphe.software/add-source?github=contactjayclatty/tracket-patches&name=Tracket%20patches"><strong>Add this source in Morphe Manager</strong></a>
 </p>
