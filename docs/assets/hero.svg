@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="480" viewBox="0 0 1280 480" role="img" aria-labelledby="title desc">
+<title id="title">Tracket patches — community Morphe patch source</title>
+<desc id="desc">A dark editorial banner with warm amber typography, a technical grid and layered patch-system graphics. Target Tracket 0.9.38.</desc>
+<defs>
+  <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#161b24"/><stop offset=".55" stop-color="#0c1018"/><stop offset="1" stop-color="#201911"/></linearGradient>
+  <linearGradient id="amber" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffdfaa"/><stop offset=".58" stop-color="#e4b15a"/><stop offset="1" stop-color="#bc7831"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#232a32" stop-opacity=".97"/><stop offset="1" stop-color="#14191f" stop-opacity=".86"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#e4b15a" stop-opacity=".32"/><stop offset="1" stop-color="#e4b15a" stop-opacity="0"/></radialGradient>
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#e1d9ca" stroke-opacity=".055"/></pattern>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+  <clipPath id="bounds"><rect width="1280" height="480" rx="20"/></clipPath>
+</defs>
+<g clip-path="url(#bounds)">
+  <rect width="1280" height="480" fill="url(#background)"/>
+  <rect width="1280" height="480" fill="url(#grid)"/>
+  <circle cx="1110" cy="118" r="350" fill="url(#glow)"/>
+  <circle cx="90" cy="540" r="250" fill="#6e9ac2" opacity=".06"/>
+  <path d="M742 -20L1100 490M818 -20L1176 490M894 -20L1252 490" stroke="#e4b15a" stroke-opacity=".07" stroke-width="2"/>
+  <rect x="0" y="0" width="1280" height="6" fill="url(#amber)"/>
+  <g font-family="Segoe UI,Inter,Arial,sans-serif">
+    <rect x="72" y="55" width="238" height="29" rx="14.5" fill="#e4b15a" fill-opacity=".11" stroke="#e4b15a" stroke-opacity=".42"/>
+    <circle cx="90" cy="70" r="4" fill="#e4b15a"/>
+    <text x="104" y="74" font-size="12" font-weight="700" letter-spacing="2" fill="#f4cb88">INDEPENDENT PATCH SOURCE</text>
+    <text x="67" y="198" fill="#f7f2e9" font-size="91" letter-spacing="-4.4" font-weight="800">TRACKET</text>
+    <text x="67" y="289" fill="url(#amber)" font-size="91" letter-spacing="-4.4" font-weight="800">PATCHES<tspan fill="#f7f2e9">.</tspan></text>
+    <text x="76" y="333" fill="#aeb3b9" font-size="19" letter-spacing="1.2">A MORPHE PATCHSET FOR ANDROID</text>
+    <path d="M76 359H616" stroke="#e4b15a" stroke-opacity=".29"/>
+    <rect x="76" y="379" width="174" height="39" rx="8" fill="#e4b15a" fill-opacity=".12" stroke="#e4b15a" stroke-opacity=".43"/>
+    <text x="93" y="404" fill="#ffd9a0" font-size="15" font-weight="700">TARGET  0.9.38</text>
+    <rect x="263" y="379" width="172" height="39" rx="8" fill="#ffffff" fill-opacity=".04" stroke="#ffffff" stroke-opacity=".15"/>
+    <text x="279" y="404" fill="#d4d5d7" font-size="15" font-weight="700">BUNDLE  v1.0.0</text>
+    <text x="76" y="455" fill="#817f7d" font-size="12" letter-spacing="1.2">UNOFFICIAL  /  COMMUNITY MAINTAINED  /  GPL-3.0-OR-LATER</text>
+  </g>
+  <g transform="translate(765 63)">
+    <circle cx="226" cy="171" r="171" fill="none" stroke="#e4b15a" stroke-opacity=".15"/>
+    <circle cx="226" cy="171" r="124" fill="none" stroke="#e4b15a" stroke-opacity=".12" stroke-dasharray="5 11"/>
+    <circle cx="226" cy="171" r="77" fill="#e4b15a" fill-opacity=".07" stroke="#e4b15a" stroke-opacity=".4"/>
+    <path d="M226 91L300 132V212L226 253L152 212V132Z" fill="#e4b15a" fill-opacity=".07" stroke="#e4b15a" stroke-width="2"/>
+    <path d="M226 116L278 146V198L226 228L174 198V146Z" fill="url(#panel)" stroke="#f9dca9" stroke-opacity=".55"/>
+    <path d="M202 170L218 186L251 152" fill="none" stroke="#f6ca81" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="226" cy="0" r="5" fill="#e4b15a"/><circle cx="397" cy="171" r="5" fill="#e4b15a"/><circle cx="55" cy="171" r="5" fill="#e4b15a"/>
+    <path d="M226 0V80M306 171H397M55 171H146" stroke="#e4b15a" stroke-opacity=".43"/>
+  </g>
+  <g font-family="Segoe UI,Inter,Arial,sans-serif">
+    <g transform="translate(1032 81) rotate(5)">
+      <rect width="196" height="72" rx="12" fill="url(#panel)" stroke="#c8a16d" stroke-opacity=".50"/>
+      <circle cx="21" cy="22" r="4" fill="#e4b15a"/>
+      <text x="35" y="26" font-size="12" font-weight="700" letter-spacing="1.3" fill="#e4b15a">PATCH MANIFEST</text>
+      <path d="M20 44H122M20 54H170" stroke="#d3d6d9" stroke-opacity=".32" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(712 300) rotate(-5)">
+      <rect width="190" height="88" rx="12" fill="url(#panel)" stroke="#c8a16d" stroke-opacity=".42"/>
+      <text x="18" y="29" font-size="12" font-weight="700" letter-spacing="1" fill="#e4b15a">COMPATIBILITY</text>
+      <rect x="18" y="42" width="87" height="25" rx="5" fill="#e4b15a" fill-opacity=".15"/>
+      <text x="27" y="59" font-size="14" font-weight="700" fill="#f5d59e">0.9.38</text>
+      <path d="M116 55H169" stroke="#ddd7d0" stroke-opacity=".28" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <text x="1178" y="449" font-size="12" letter-spacing="2" fill="#a58555">01 / 01</text>
+  </g>
+</g>
+</svg>
