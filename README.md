@@ -29,6 +29,11 @@
   <a href="https://github.com/contactjayclatty/tracket-patches/releases/latest"><img alt="View latest GitHub release" src="https://img.shields.io/badge/VIEW_RELEASES-252b33?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
 
+> [!IMPORTANT]
+> **Please support Tracket's original developer.** If you use and enjoy Tracket, consider buying an official subscription or Lifetime option through the [Tracket app on Google Play](https://play.google.com/store/apps/details?id=com.tracket.app). Supporting the developer helps sustain the original app.
+>
+> **A direct note to the Tracket developer:** I am willing to remove this entire project under my control, including its patch source, releases, downloadable files and website, if you request it. Please email **[contactjayclatty@pm.me](mailto:contactjayclatty@pm.me?subject=Tracket%20Patches%20-%20Full%20Removal%20Request)** directly. I cannot remove independent copies or forks maintained by others.
+
 ---
 
 ## Overview
@@ -192,6 +197,6 @@ If you like Tracket, please consider purchasing a legitimate plan through [Googl
 
 This repository includes a [GPL-3.0 license](LICENSE) and documents its patch code under **GPL-3.0-or-later**. It is **unofficial** and unaffiliated with Tracket, Google Play, or Morphe.
 
-For maintainer contact or removal requests: **[contactjayclatty@pm.me](mailto:contactjayclatty@pm.me)**.
+**Developer takedown requests are welcome.** I am willing to remove this entire project and all files under my control if the original Tracket developer asks. Contact me privately at **[contactjayclatty@pm.me](mailto:contactjayclatty@pm.me?subject=Tracket%20Patches%20-%20Full%20Removal%20Request)**.
 
 <p align="center"><sub>Built for a specific version. Documented for careful review. Please support the original app developer.</sub></p>
