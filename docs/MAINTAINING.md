@@ -51,7 +51,7 @@ The current script builds `dist/patches-1.0.0.mpp` and also copies the bundle to
 
 ## Release metadata
 
-Morphe Manager reads [`patches-bundle.json`](../patches-bundle.json) from the GitHub source's default branch. In the current release, its fields include:
+Morphe Manager reads [`patches-bundle.json`](../patches-bundle.json) from `main`. In the current release, its fields include:
 
 | Field | Purpose |
 | :-- | :-- |

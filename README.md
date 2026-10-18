@@ -85,8 +85,10 @@ There are three ways to access the same versioned bundle. Choose the workflow ap
    ```
 
 4. Check that the target is stock **Tracket 0.9.38** and that the source displays the documented patch and version.
+5. In Manager, leave **Unlock lifetime** enabled for Tracket.
+6. Patch the stock **Tracket 0.9.38 APK** and install the patched APK.
 
-Manager reads [`patches-bundle.json`](patches-bundle.json) from the default branch, and that manifest identifies the release asset. Adding a remote source requires trust in its maintainer.
+Manager reads [`patches-bundle.json`](patches-bundle.json) from `main`, and that manifest identifies the release asset. Adding a remote source requires trust in its maintainer.
 
 ### 02 &nbsp; Local bundle · pinned version
 
