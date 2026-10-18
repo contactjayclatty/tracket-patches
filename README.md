@@ -44,7 +44,8 @@ Tracket sells three plans. The names below are the ones in version 0.9.38. The p
 - [Desktop](#desktop)
 - [Before you patch](#before-you-patch)
 - [Build](#build)
-- [How the patch finds the code](#how-the-patch-finds-the-code)
+- [How the patch works](#how-the-patch-works)
+- [For the Tracket developer](#for-the-tracket-developer)
 - [Cut the next release](#cut-the-next-release)
 
 ## The patch
@@ -143,18 +144,52 @@ pwsh -File build.ps1
 
 The script writes `dist/patches-1.0.0.mpp`. The banner at the top of this page is rendered from [`docs/banner.html`](docs/banner.html).
 
-## How the patch finds the code
+## How the patch works
 
-<details>
-<summary>Fingerprint, grant, and the Play license check</summary>
+Tracket 0.9.38 decides “pro” on the phone. A Play purchase list is handed to one method. That method seeds a local key, publishes a short-lived grant, and a coroutine refreshes the grant about once a minute. Screens that hide a watermark or a locked tool read that grant. They do not read a server receipt.
 
-The purchase method is found by fingerprint: a `void` method with one `java.util.List` parameter whose body contains both `purchaseTime` and `SHA-256`. A short prelude is inserted at the start. It seeds the on-device grant, starts the app's own refresh coroutine, and returns. The original method body stays in the dex and is not reached.
+The patch makes two edits in [`LifetimeUnlock.java`](src/tracket/morphe/LifetimeUnlock.java). Both are on by default.
 
-`com.pairip.licensecheck.LicenseClient.checkLicense` returns immediately, so a re-signed APK is not stopped by the Play licensing client. Tracket 0.9.38 has no `libpairip` native library.
+```mermaid
+flowchart TD
+  purchases["Play purchase list"] --> grant["Grant method"]
+  grant --> local["Local grant, refreshed on device"]
+  local --> screens["Watermark and pro tools"]
+  prelude["Inserted prelude returns immediately"] --> grant
+  license["LicenseClient.checkLicense"] --> skip["First instruction is return-void"]
+```
 
-`src/tracket/morphe/CheckPrelude.java` is a maintainer check. It is not packed into the `.mpp`.
+1. **Grant method.** Morphe searches every class for a `void` method with one `java.util.List` parameter whose body contains both `purchaseTime` and `SHA-256`. In 0.9.38 that method is the purchase handler. A prelude is inserted at instruction 0:
+   - Read the ratchet object `Lql3.D`.
+   - Hash 16 random bytes with `SHA-256` and store the digest in `Lql3.B`. Clear `Lql3.C`. Set epoch `Lql3.A` to `0`.
+   - Publish `new Date(now)` through the handler’s `Luy7` field, then call the handler’s own `b()` so the app mints its normal grant.
+   - Start the existing refresher (`Lsq` via `Ltz7.g`) and store the job on the handler’s field `e`.
+   - `return-void`. The original method body stays in the dex and never runs, so an empty purchase list cannot clear the key.
+2. **Play license check.** `com.pairip.licensecheck.LicenseClient.checkLicense` gets `return-void` as its first instruction. A re-signed APK would otherwise fail this check and never reach the editor. This build has no `libpairip` native library. The license client is not the subscription.
 
-</details>
+The grant itself does not encode Monthly, Yearly, or Lifetime. Any live grant is treated as pro. Lifetime is the Play product this patch is named for (`pro_lifetime`).
+
+The helper names are hardcoded for this R8 pass: `Lql3`, `Lxb6`, `Le2`, `Luy7`, `Lmr`, `Lk01`, `Lsq`, `Ltz7`, `Lhy7`, `Lqp1`. The handler class is not hardcoded. The fingerprint finds it. `CheckPrelude.java` prints the patched method so a maintainer can confirm the prelude. It is not inside the `.mpp`.
+
+Apply with `--bytecode-mode=FULL`. That is the mode this bundle was checked with. Success is a Morphe log line `Applied: Unlock lifetime`, then the app opening on 0.9.38 without the Play license screen. A server that checks the account can still say no.
+
+## For the Tracket developer
+
+This patch only rewrites the installed APK. It never sends a Play purchase token. The key it stores is a SHA-256 of random bytes created on the device. Anything that treats that local grant as proof of payment will follow it.
+
+A build you ship can make this `.mpp` stop applying, or make it useless. The rows are the 0.9.38 behavior.
+
+| What you change | What this patch does |
+| --- | --- |
+| Ship a `versionName` other than `0.9.38` | Morphe hides the patch. Compatibility is pinned to that version. People who stay on 0.9.38 keep the old APK. |
+| Make the purchase method no longer `void (List)` with both `purchaseTime` and `SHA-256` in the body | The patch fails closed: `Tracket grant method was not found`. Nothing is written. |
+| Remove `com.pairip.licensecheck.LicenseClient.checkLicense` | The patch fails closed: `LicenseClient.checkLicense was not found`. |
+| Rename `Lql3`, `Lxb6`, `Lmr`, `Lsq`, or `Ltz7` and leave the method fingerprint alone | The patch still applies. The rewritten app calls names that no longer exist. |
+| Unlock watermark, export, and the editor from a purchase your server verified with Google Play | The local grant stops being enough. This patch cannot mint a Play token. |
+
+The durable fix is the last row. Pro features should follow a check on your API (`tracket-api.tracket-app-dev.workers.dev` in this build), using a purchase token Google Play can verify. The on-device grant can stay as a cache of that answer. Pairip only checks that the install is licensed. It is not a subscription check, which is why skipping `checkLicense` is enough to let a re-signed APK start.
+
+If you maintain **this** repository instead of Tracket: a new app build needs a new fingerprint pass in `LifetimeUnlock.java`, a new compatibility version, and a release from [Cut the next release](#cut-the-next-release). Do not point the old `download_url` at a patch that still says 0.9.38.
 
 ## Cut the next release
 
