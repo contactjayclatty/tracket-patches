@@ -173,7 +173,12 @@ The helper names are hardcoded for this R8 pass: `Lql3`, `Lxb6`, `Le2`, `Luy7`, 
 
 Apply with `--bytecode-mode=FULL`. That is the mode this bundle was checked with. Success is a Morphe log line `Applied: Unlock lifetime`, then the app opening on 0.9.38 without the Play license screen. A server that checks the account can still say no.
 
+<details id="for-the-tracket-developer">
+<summary><strong>For the Tracket developer</strong> — how a new build retires this patch, and where to send a removal request</summary>
+
 ## For the Tracket developer
+
+Removal requests go to [contactjayclatty@pm.me](mailto:contactjayclatty@pm.me).
 
 This patch only rewrites the installed APK. It never sends a Play purchase token. The key it stores is a SHA-256 of random bytes created on the device. Anything that treats that local grant as proof of payment will follow it.
 
@@ -190,6 +195,8 @@ A build you ship can make this `.mpp` stop applying, or make it useless. The row
 The durable fix is the last row. Pro features should follow a check on your API (`tracket-api.tracket-app-dev.workers.dev` in this build), using a purchase token Google Play can verify. The on-device grant can stay as a cache of that answer. Pairip only checks that the install is licensed. It is not a subscription check, which is why skipping `checkLicense` is enough to let a re-signed APK start.
 
 If you maintain **this** repository instead of Tracket: a new app build needs a new fingerprint pass in `LifetimeUnlock.java`, a new compatibility version, and a release from [Cut the next release](#cut-the-next-release). Do not point the old `download_url` at a patch that still says 0.9.38.
+
+</details>
 
 ## Cut the next release
 
