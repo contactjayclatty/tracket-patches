@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tracket patches</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1280px;
+    height: 520px;
+    overflow: hidden;
+    background: #0b0d11;
+  }
+  .card {
+    width: 1280px;
+    height: 520px;
+    position: relative;
+    overflow: hidden;
+    color: #f6f1e8;
+    font-family: "Segoe UI", sans-serif;
+    background:
+      radial-gradient(820px 420px at 92% 8%, rgba(228, 177, 90, 0.22), transparent 62%),
+      radial-gradient(640px 480px at 0% 110%, rgba(88, 132, 168, 0.16), transparent 58%),
+      linear-gradient(155deg, #161b22 0%, #0c0e12 48%, #14110d 100%);
+  }
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 38%, #000 100%);
+  }
+  svg.art {
+    position: absolute;
+    right: -20px;
+    top: 36px;
+    width: 560px;
+    height: 460px;
+  }
+  .copy {
+    position: relative;
+    z-index: 2;
+    padding: 58px 72px 52px;
+    width: 820px;
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 650;
+    color: #e4b15a;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e4b15a;
+    box-shadow: 0 0 16px #e4b15a;
+  }
+  h1 {
+    margin-top: 22px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 54px;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 740px;
+  }
+  .sub {
+    margin-top: 18px;
+    font-size: 22px;
+    line-height: 1.35;
+    color: #d9d0c3;
+    max-width: 640px;
+  }
+  .plans {
+    display: flex;
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .plan {
+    min-width: 148px;
+    padding: 14px 18px 13px;
+    border-radius: 16px;
+    border: 1px solid rgba(228, 177, 90, 0.45);
+    background: rgba(12, 14, 18, 0.55);
+    backdrop-filter: blur(6px);
+  }
+  .plan strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 650;
+    color: #f6f1e8;
+  }
+  .plan span {
+    display: block;
+    margin-top: 3px;
+    font-size: 13px;
+    color: #b7aa96;
+  }
+  .plan.life {
+    background: linear-gradient(180deg, rgba(228, 177, 90, 0.22), rgba(228, 177, 90, 0.06));
+    border-color: #e4b15a;
+  }
+  .foot {
+    position: absolute;
+    left: 72px;
+    bottom: 28px;
+    z-index: 2;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8d8478;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid"></div>
+    <svg class="art" viewBox="0 0 560 460" fill="none" aria-hidden="true">
+      <path d="M40 390 C 140 300, 180 120, 320 150 S 470 80, 530 40" stroke="#e4b15a" stroke-width="2.5" opacity="0.9"/>
+      <path d="M20 410 C 150 340, 210 180, 340 190 S 480 130, 540 90" stroke="#f6f1e8" stroke-width="1.2" opacity="0.35"/>
+      <circle cx="320" cy="150" r="7" fill="#e4b15a"/>
+      <circle cx="320" cy="150" r="16" stroke="#e4b15a" opacity="0.5"/>
+      <circle cx="186" cy="214" r="4" fill="#f6f1e8" opacity="0.8"/>
+      <circle cx="452" cy="92" r="4" fill="#e4b15a"/>
+      <rect x="300" y="210" width="150" height="96" rx="10" stroke="#f6f1e8" stroke-opacity="0.28"/>
+      <rect x="318" y="228" width="150" height="96" rx="10" stroke="#e4b15a" stroke-opacity="0.55"/>
+      <path d="M348 276 h90 M348 292 h62" stroke="#f6f1e8" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div class="copy">
+      <div class="eyebrow"><span class="dot"></span> Support the dev</div>
+      <h1>Please consider buying a subscription</h1>
+      <p class="sub">If you like this app, support the dev behind this magic :)</p>
+      <div class="plans">
+        <div class="plan"><strong>Monthly</strong><span>Renews each month</span></div>
+        <div class="plan"><strong>Yearly</strong><span>Renews each year</span></div>
+        <div class="plan life"><strong>Lifetime</strong><span>One-time purchase</span></div>
+      </div>
+    </div>
+    <div class="foot">Tracket patches · com.tracket.app · 0.9.38</div>
+  </div>
+</body>
+</html>
