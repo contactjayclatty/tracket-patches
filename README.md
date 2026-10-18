@@ -24,6 +24,7 @@
 </p>
 
 <p align="center">
+  <a href="https://contactjayclatty.github.io/tracket-patches/"><img alt="Visit the Tracket Patches website" src="https://img.shields.io/badge/OPEN_WEBSITE-e8eef2?style=for-the-badge&logo=githubpages&logoColor=101a25&labelColor=e8eef2"></a>
   <a href="https://morphe.software/add-source?github=contactjayclatty/tracket-patches&name=Tracket%20patches"><img alt="Add source to Morphe Manager" src="https://img.shields.io/badge/ADD_TO_MORPHE_MANAGER-6e40c9?style=for-the-badge&logo=android&logoColor=white"></a>
   <a href="https://github.com/contactjayclatty/tracket-patches/releases/latest"><img alt="View latest GitHub release" src="https://img.shields.io/badge/VIEW_RELEASES-252b33?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
