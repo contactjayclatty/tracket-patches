@@ -1,0 +1,7 @@
+
+(()=>{"use strict";
+const nav=document.querySelector("[data-nav]"),toggle=document.querySelector("[data-menu]");
+if(nav&&toggle){toggle.addEventListener("click",()=>{const opened=nav.classList.toggle("is-open");toggle.setAttribute("aria-expanded",String(opened));toggle.setAttribute("aria-label",opened?"Close menu":"Open menu")});nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("is-open");toggle.setAttribute("aria-expanded","false")}));document.addEventListener("keydown",e=>{if(e.key==="Escape"){nav.classList.remove("is-open");toggle.setAttribute("aria-expanded","false")}})}
+const search=document.querySelector("[data-search]");if(search){const rows=[...document.querySelectorAll("[data-doc-row]")];const empty=document.querySelector("[data-empty]");search.addEventListener("input",()=>{const term=search.value.trim().toLowerCase();let count=0;rows.forEach(el=>{let show=(el.textContent+" "+(el.dataset.terms||"")).toLowerCase().includes(term);el.hidden=!show;if(show)count++});if(empty)empty.hidden=count>0})}
+document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{const target=document.getElementById(btn.dataset.copy);if(!target)return;const copy=target.textContent||"";try{await navigator.clipboard.writeText(copy);const old=btn.textContent;btn.textContent="Copied";setTimeout(()=>btn.textContent=old,1800)}catch(_){btn.textContent="Select code to copy"}}));
+})();
