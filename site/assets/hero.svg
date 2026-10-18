@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 470" role="img" aria-labelledby="title desc">
+<title id="title">Tracket patch system</title><desc id="desc">A refined, blue metallic orbital insignia with version references for the Tracket patchset.</desc>
+<defs><radialGradient id="glow"><stop stop-color="#7fb7d5" stop-opacity=".27"/><stop offset="1" stop-color="#4b779d" stop-opacity="0"/></radialGradient><linearGradient id="orbit" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dceef7"/><stop offset=".48" stop-color="#719dbb"/><stop offset="1" stop-color="#274866"/></linearGradient><linearGradient id="core" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b354d"/><stop offset="1" stop-color="#091a2b"/></linearGradient></defs>
+<circle cx="235" cy="235" r="222" fill="url(#glow)"/><circle cx="235" cy="235" r="173" fill="none" stroke="#b6d6eb" stroke-opacity=".15"/>
+<circle cx="235" cy="235" r="147" fill="none" stroke="#9bc5df" stroke-opacity=".33" stroke-dasharray="4 9"/>
+<ellipse cx="235" cy="235" rx="125" ry="195" transform="rotate(43 235 235)" stroke="#a6cfe7" stroke-opacity=".38" fill="none"/>
+<ellipse cx="235" cy="235" rx="125" ry="195" transform="rotate(-43 235 235)" stroke="#7caccb" stroke-opacity=".33" fill="none"/>
+<path d="M79 326C22 195 136 66 252 73c135 8 216 150 146 269-69 118-260 113-319-16Z" fill="none" stroke="url(#orbit)" stroke-width="2.7"/>
+<path d="M93 127C167 51 320 48 389 128" fill="none" stroke="#e8f5fc" stroke-opacity=".48" stroke-width="1.4"/>
+<circle cx="235" cy="235" r="100" fill="url(#core)" stroke="#c1d9e9" stroke-opacity=".58" stroke-width="2"/>
+<circle cx="235" cy="235" r="88" stroke="#7ea6c1" stroke-opacity=".31" fill="none" stroke-width="6"/>
+<path d="M190 207h90M235 207v75M204 270h62" fill="none" stroke="#e7f2f8" stroke-width="8.5" stroke-linecap="round"/>
+<circle cx="385" cy="129" r="6.2" fill="#e2c398"/><circle cx="100" cy="129" r="4" fill="#d2e8f8"/><circle cx="346" cy="358" r="3.6" fill="#bed8ec"/>
+<path d="M40 235h81m226 0h82M235 24v91m0 240v91" stroke="#9cc1d9" stroke-opacity=".28"/>
+<g fill="#9dbacb" font-family="monospace" font-size="10" letter-spacing="1.6"><text x="23" y="224">A/01</text><text x="397" y="224">237</text><text x="252" y="34">SOURCE</text><text x="253" y="452">0.9.38</text></g>
+</svg>
