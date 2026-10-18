@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://contactjayclatty.github.io/tracket-patches/sitemap.xml
