@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{color-scheme:dark;--bg:#080d13;--panel:#0d151f;--panel-2:#101c28;--line:#263440;--line-bright:#405365;--ink:#edf2f6;--muted:#a3b1bf;--dim:#798c9e;--accent:#b7cfdf;--gold:#c8ab84;--head:'Manrope','Helvetica Neue',Arial,sans-serif;--body:'DM Sans','Helvetica Neue',Arial,sans-serif}
-*,*::before,*::after{box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box}[hidden]{display:none!important}
 html{scroll-behavior:smooth}body{background:var(--bg);color:var(--ink);margin:0;font:15px/1.65 var(--body);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}button,a,input{ -webkit-tap-highlight-color:transparent}
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #a8d7fc;outline-offset:4px}
