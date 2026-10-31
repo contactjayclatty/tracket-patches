@@ -147,3 +147,6 @@ Tracket's developer can request removal or raise issues using [contactjayclatty@
 ---
 
 [Project overview](../README.md) · [Troubleshooting](TROUBLESHOOTING.md)
+## Published 1.0.1 validation
+
+[Verification record](verification/1.0.1.md): build, JVM discovery, DEX validation, and Android 35 loading with Manager 2.3.0 passed in CI. The remote manifest now references the published 1.0.1 release. Re-run the Sources UI check on a device before closing issue #5.

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/hero.svg" width="100%" alt="Tracket Patches. Independent Morphe patch source for Tracket 0.9.38. Bundle v1.0.0." />
+  <img src="docs/assets/hero.svg" width="100%" alt="Tracket Patches. Independent Morphe patch source for Tracket 0.9.38. Bundle v1.0.1." />
 </p>
 
 <p align="center">
@@ -43,7 +43,7 @@
 <table>
   <tr>
     <td width="33%" align="center"><sub>01 / APP TARGET</sub><br><strong>Tracket 0.9.38</strong><br><sub>versionCode 237</sub></td>
-    <td width="33%" align="center"><sub>02 / RELEASE</sub><br><strong>Patchset v1.0.0</strong><br><sub>One published patch</sub></td>
+    <td width="33%" align="center"><sub>02 / RELEASE</sub><br><strong>Patchset v1.0.1</strong><br><sub>One published patch</sub></td>
     <td width="33%" align="center"><sub>03 / SCOPE</sub><br><strong>On-device only</strong><br><sub>Not a verified purchase</sub></td>
   </tr>
 </table>
@@ -65,8 +65,8 @@ The bundle is version-locked because the relevant implementation uses obfuscated
 | :-- | :-- |
 | Application | Tracket (`com.tracket.app`) |
 | Supported app build | **0.9.38**, `versionCode 237` |
-| Bundle | `patches-1.0.0.mpp` |
-| Published release | [v1.0.0](https://github.com/contactjayclatty/tracket-patches/releases/tag/v1.0.0) |
+| Bundle | `patches-1.0.1.mpp` |
+| Published release | [v1.0.1](https://github.com/contactjayclatty/tracket-patches/releases/tag/v1.0.1) |
 | Desktop tool documented for this bundle | Morphe desktop **1.18.1** |
 | Desktop bytecode mode used in project checks | `FULL` |
 | Project license | [GPL-3.0-or-later](LICENSE) |
@@ -96,7 +96,7 @@ Manager reads [`patches-bundle.json`](patches-bundle.json) from the default bran
 
 ### 02 &nbsp; Local bundle · pinned version
 
-Already downloaded or built the `.mpp` file? In Manager, use `Sources` → `+` → `Local`, then choose [`dist/patches-1.0.0.mpp`](dist/patches-1.0.0.mpp).
+Already downloaded or built the `.mpp` file? In Manager, use `Sources` → `+` → `Local`, then choose [`dist/patches-1.0.1.mpp`](dist/patches-1.0.1.mpp).
 
 A local import is a **snapshot**, not a subscription to future releases. Import a new bundle manually when you intentionally upgrade.
 
@@ -106,7 +106,7 @@ A local import is a **snapshot**, not a subscription to future releases. Import 
 For the documented stock 0.9.38 APK and Morphe desktop CLI 1.18.1, the repository provides this command:
 
 ```powershell
-morphe patch --bytecode-mode=FULL -p patches-1.0.0.mpp -o tracket-0.9.38-morphe.apk tracket-0.9.38.apk
+morphe patch --bytecode-mode=FULL -p patches-1.0.1.mpp -o tracket-0.9.38-morphe.apk tracket-0.9.38.apk
 ```
 
 The `FULL` setting is the bytecode mode checked with this bundle.
@@ -116,7 +116,7 @@ The patch is enabled by default. The following options file, when supplied with 
 ```json
 [
   {
-    "meta": { "source": "patches-1.0.0.mpp" },
+    "meta": { "source": "patches-1.0.1.mpp" },
     "patches": {
       "Unlock lifetime": { "enabled": false }
     }
@@ -124,7 +124,7 @@ The patch is enabled by default. The following options file, when supplied with 
 ]
 ```
 
-**Build from source:** JDK 17+ and Morphe desktop 1.18.1 are required by [`build.ps1`](build.ps1). See the [maintainer guide](docs/MAINTAINING.md) for the documented build entry point and release checks.
+**Build from source:** Python 3 and JDK 17+ are required by [`build.py`](build.py); [`build.ps1`](build.ps1) delegates to it. Build dependencies are downloaded with pinned checksums. See the [maintainer guide](docs/MAINTAINING.md) for the documented build entry point and release checks.
 
 </details>
 
@@ -165,6 +165,7 @@ The source fingerprints a purchase handler containing `purchaseTime` and `SHA-25
 | **[Compatibility & troubleshooting →](docs/TROUBLESHOOTING.md)** | Exact version matrix, common failures, safe issue-reporting template |
 | **[Maintaining & releasing →](docs/MAINTAINING.md)** | Build prerequisites, manifest fields, release checklist, verification record |
 | **[Patch source →](src/tracket/morphe/LifetimeUnlock.java)** | Auditable Java implementation |
+| **[1.0.1 verification →](docs/verification/1.0.1.md)** | Build, Android loader evidence, checksums, and test limits |
 | **[Bundle metadata →](patches-bundle.json)** | Version, asset URL and release description |
 
 ### For contributors and maintainers
