@@ -115,3 +115,15 @@ For billing and official product support, go to the [Tracket Google Play listing
 ## Manager cannot load bundle 1.0.0
 
 Version 1.0.0 contains Java classes but no Android DEX and lacks bundle name/version metadata. Use 1.0.1 or newer. Refresh the remote source; if it remains on the old artifact, remove and re-add it. For local sources, import the new `.mpp` manually. The 1.0.1 DEX was loaded successfully by Manager 2.3.0's patcher on Android 35; patched-app runtime behavior is a separate test.
+
+## Remote source remains Unnamed
+
+Use Sources → + → Remote with this exact metadata URL:
+
+```text
+https://raw.githubusercontent.com/contactjayclatty/tracket-patches/main/patches-bundle.json
+```
+
+A user confirmed both local 1.0.1 import and remote import using this URL work. The repository shortcut/deep link failed in that user's earlier setup; its exact cause is not independently established. Current Manager source normalizes the bare repository URL to the same metadata endpoint, so do not claim a confirmed repository-routing bug. The README and website now recommend the explicit URL and their setup buttons open a page with a Copy URL button. Automatic updates remain supported. Delete only an older failed source before re-adding; do not reset Manager data.
+
+Verify the resulting card shows Tracket Patches, 1.0.1, and 1 patch. If it fails, record Manager version, exact source URL, and the source error log. See [setup instructions](https://contactjayclatty.github.io/tracket-patches/docs/#add-source).
